@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div className="">
-      <div className="carousel w-full h-[85vh] relative">
+      <div className="carousel w-full h-full lg:h-[90vh] relative">
         <div id="item1" className="carousel-item w-full">
           <img
             src="https://i.ibb.co/fG3yGr5/hotel1.jpg"
