@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthProvider } from "../AuthProvider/AuthContext/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {setUser} = useContext(AuthProvider);
 
   const resetForm = () => {
     setEmail("");
@@ -28,7 +30,8 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.user);
+        setUser(data.user)
         if (data.message === "Login successful") {
           Swal.fire({
             position: "top-center",

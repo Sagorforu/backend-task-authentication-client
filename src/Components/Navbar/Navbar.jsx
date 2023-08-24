@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthProvider } from "../AuthProvider/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthProvider);
+  // const user = null;
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -26,18 +30,42 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li className="">
-              <Link to="/" className="font-semibold  text-base">Home</Link>
+              <Link to="/" className="font-semibold  text-base">
+                Home
+              </Link>
             </li>
-            <li>
-              <Link to="/login" className="font-semibold  text-base">Login</Link>
-            </li>
-            <li>
-              <Link to="/register" className="font-semibold text-base">Registration</Link>
-            </li>
+            {user ? (
+              <>
+                <li className="font-semibold mx-3 text-base">
+                  Welcome, {user.name}
+                </li>
+                <li>
+                  <Link onClick={logOut} className="font-semibold text-base">
+                    Log Out
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login" className="font-semibold  text-base">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/register" className="font-semibold text-base">
+                    Registration
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl font-semibold hidden lg:inline-block pt-2">
+          <Link
+            to="/"
+            className="btn btn-ghost normal-case text-xl font-semibold hidden lg:inline-block pt-2"
+          >
             Hotels
           </Link>
         </div>
@@ -45,18 +73,43 @@ const Navbar = () => {
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1 mx-3">
           <li className="mx-3">
-            <Link to="/" className="font-semibold  text-base">Home</Link>
+            <Link to="/" className="font-semibold  text-base">
+              Home
+            </Link>
           </li>
-          <li>
-            <Link to="/login" className="font-semibold  text-base">Login</Link>
-          </li>
-          <li>
-            <Link to="/register" className="font-semibold mx-3 text-base">Registration</Link>
-          </li>
+
+          {user ? (
+            <>
+              <li className="font-semibold mx-3 mt-2 text-base">
+                Welcome, {user.name}
+              </li>
+              <li>
+                <Link onClick={logOut} className="font-semibold mx-3 text-base">
+                  Log Out
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login" className="font-semibold  text-base">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/register" className="font-semibold mx-3 text-base">
+                  Registration
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className="navbar-end lg:hidden">
-        <Link to="/" className="btn btn-ghost normal-case text-xl font-semibold">
+        <Link
+          to="/"
+          className="btn btn-ghost normal-case text-xl font-semibold"
+        >
           Hotels
         </Link>
       </div>
