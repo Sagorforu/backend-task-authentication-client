@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+  };
 
   const register = (e) => {
     e.preventDefault();
@@ -25,7 +32,36 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast("Registration successful!!!");
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Registration successful!!!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          resetForm();
+          navigate("/")
+        } else {
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: "Registration unsuccessful. Please try again.",
+            text: data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("Error", error);
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: "Registration unsuccessful. Please try again.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
@@ -71,7 +107,7 @@ const Register = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Password"
                 className="input input-bordered"
                 value={password}
@@ -95,7 +131,6 @@ const Register = () => {
               </h3>
             </div>
           </form>
-          <ToastContainer />
         </div>
       </div>
     </div>
