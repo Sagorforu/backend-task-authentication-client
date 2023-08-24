@@ -24,7 +24,7 @@ const Register = () => {
       email,
       password,
     };
-    fetch("http://localhost:5000/register", {
+    fetch("https://backend-task-server.vercel.app/register", {
       method: "POST",
       headers: {
         "content-type": "application/json",

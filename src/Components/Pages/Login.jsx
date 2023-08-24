@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const {setUser} = useContext(AuthProvider);
+  const { setUser } = useContext(AuthProvider);
 
   const resetForm = () => {
     setEmail("");
@@ -21,7 +21,7 @@ const Login = () => {
       email,
       password,
     };
-    fetch("http://localhost:5000/login", {
+    fetch("https://backend-task-server.vercel.app/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data.user);
-        setUser(data.user)
+        setUser(data.user);
         if (data.message === "Login successful") {
           Swal.fire({
             position: "top-center",
