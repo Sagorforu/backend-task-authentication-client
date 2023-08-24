@@ -41,7 +41,7 @@ const Register = () => {
             timer: 1500,
           });
           resetForm();
-          navigate("/")
+          navigate("/");
         } else {
           Swal.fire({
             position: "top-center",
@@ -83,6 +83,7 @@ const Register = () => {
                 <span className="label-text">Name</span>
               </label>
               <input
+                required
                 type="text"
                 placeholder="Name"
                 className="input input-bordered"
@@ -95,7 +96,8 @@ const Register = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="text"
+                required
+                type="email"
                 placeholder="Email"
                 className="input input-bordered"
                 value={email}
@@ -107,17 +109,13 @@ const Register = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                required
                 type="password"
                 placeholder="Password"
                 className="input input-bordered"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-ghost bg-gray-300 hover:bg-gray-400">
