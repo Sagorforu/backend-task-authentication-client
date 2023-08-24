@@ -4,7 +4,7 @@ import HotelCards from "../Hotels/HotelCards/HotelCards";
 
 const Home = () => {
     return (
-        <div>
+        <div className="overflow-y-hidden">
             <Header></Header>
             <HotelCards></HotelCards>
         </div>

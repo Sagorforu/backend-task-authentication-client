@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthProvider } from "../AuthProvider/AuthContext/AuthContext";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthProvider)
 
   const resetForm = () => {
     setName("");
@@ -41,7 +43,7 @@ const Register = () => {
             timer: 1500,
           });
           resetForm();
-          navigate("/");
+          navigate("/login");
         } else {
           Swal.fire({
             position: "top-center",
