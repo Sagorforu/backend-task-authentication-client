@@ -1,9 +1,12 @@
+import Header from "../Header.jsx/Header";
+import HotelCards from "../Hotels/HotelCards/HotelCards";
 
 
 const Home = () => {
     return (
         <div>
-            This is home page
+            <Header></Header>
+            <HotelCards></HotelCards>
         </div>
     );
 };
